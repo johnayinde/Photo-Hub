@@ -1,0 +1,49 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  background: rgb(214, 209, 209);
+}
+nav {
+  margin-bottom: 0.5em;
+}
+.btn {
+  padding: 3px 6px;
+}
+.card-body > img {
+  width: 100%;
+}
+.card-body {
+  padding: 0;
+}
+div.card-footer {
+  background-color: rgba(174, 171, 171, 0.671);
+}
+
+.caption {
+  padding: 0 5px 10px 10px;
+}
+#delete-form,
+.delete-form {
+  display: inline-block;
+}
+.camp-img {
+  width: 100%;
+  height: 250px;
+}
+.camp-card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+img.img-thumbnail {
+  width: 100%;
+  padding: 0;
+}
+.camp-show-img {
+  height: 80vh;
+}
+.avatar {
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  margin: 0 4px;
+}
