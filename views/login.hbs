@@ -1,0 +1,35 @@
+
+  {{> header }}
+
+
+<div class="container">
+  <h1 class="text-center">Login Page</h1>
+
+
+{{> authError }}
+
+
+  <div class="row">
+    <div  style="width: 40%; margin: 20px auto;">
+      <form action="/auth/signin" method="post" class="mb-3">
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Email</label>
+          <input required type="email" class="form-control" name="email" placeholder="Email" />
+        </div>
+
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input required class="form-control" name="password" placeholder="Password" type="password" />
+        </div>
+
+        <button type="submit" class="btn btn-primary  btn-lg">
+          Login
+        </button>
+      </form>
+      <a class="" href="/auth/register">Register</a>
+
+    </div>
+  </div>
+</div>
+
+{{> footer }}

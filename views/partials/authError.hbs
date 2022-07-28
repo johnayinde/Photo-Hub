@@ -1,0 +1,16 @@
+  {{#if validationError}}
+      <div class="alert alert-danger" role="alert">
+        <ul>
+          {{#each validationError}}
+            <li>{{this}}</li>
+          {{/each}}
+        </ul>
+      </div>
+{{/if}}
+
+  {{#if reg_error}}
+      <div class="alert alert-danger" role="alert">
+          {{reg_error}}
+      </div>
+  {{/if}}
+
