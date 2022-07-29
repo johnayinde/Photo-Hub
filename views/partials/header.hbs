@@ -24,6 +24,8 @@
       <ul class="nav navbar-nav ms-auto">
         {{#if currentUser}}
             <li><a class="nav-link" href="">Welcome, {{currentUser.username}}</a></li>
+            <li><a class="nav-link" href="/profile">Dashboard</a></li>
+            <li><a class="nav-link" href="/gallery/new">Upload</a></li>
             <li><a class="nav-link" href="/auth/logout">Logout</a></li>
          
       {{else}}
@@ -35,12 +37,16 @@
     </div>
   </nav>
 
-{{#if errorMessage}}
   <div class="container">
+    {{#if error}}
       <div class="alert alert-danger" role="alert">
-        {{errorMessage}}
+        {{error}}
       </div>
-          {{!-- <div class="alert alert-success" role="alert">
-          </div> --}}
+    {{/if}}
+      
+    {{#if success}}
+      <div class="alert alert-success" role="alert">
+        {{success}} 
+      </div>
+    {{/if}}
   </div>
-{{/if}}

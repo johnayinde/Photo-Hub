@@ -1,0 +1,30 @@
+
+{{> header }}
+
+<div class="container">
+  <h1 class="text-center">Upload image</h1>
+  
+  <div class="row">
+    <div style="width: 40%; margin: 20px auto;">
+      <form action="/gallery" method="post">
+
+         <div class="mb-3">
+          <label class="form-label" for="">Title</label>
+          <input type="text" class="form-control" name="title" placeholder="Title" required />
+        </div>
+
+        <div class="mb-3">
+          <label for="formFile" class="form-label">Image</label>
+          <input class="form-control" placeholder="image" type="text" name="image" id="formFile" required>
+          {{!-- <input class="form-control" type="file" id="formFile"> --}}
+        </div>
+        
+        <button type="submit" class="btn btn-primary btn-block p-2">
+          Upload
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+{{> footer }}

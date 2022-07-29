@@ -12,7 +12,28 @@
          <button class="btn btn-outline-secondary" type="button" >Button</button>
       </div>
 
-      
+
+    <div class="row text-center">
+          {{#each galleries}}
+        <div class="col-sm-6 col-md-3">
+          <div class="card mt-3 camp-card">
+            <img src="{{this.image}}" class="img-thumbnail camp-img" />
+            <div class="caption">
+              <p class="card-text text-center mt-2">
+                {{this.title}}
+              </p>
+            </div>
+          </div>
+        </div>
+         {{else}}
+          <p>No Galleries available!</p>
+         {{/each}}
+    </div>
+
+
+
+
+
    </div>
 </div>
 
