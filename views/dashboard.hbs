@@ -1,0 +1,34 @@
+
+{{> header }}
+
+
+ <div class="row justify-content-center text-center mt-5">
+  <div class="col-lg-6 ">
+      <h2>All {{currentUser.username}}'s Galleries ({{galleries.length}})</h2>
+   <div class="row text-center">
+      {{#each galleries}}
+      <div class="col-sm-6 col-md-3">
+         <div class="card mt-3  camp-card">
+            <img src="{{this.image}}" class="img-thumbnail camp-img" />
+            <div class="caption">
+               <p class="card-text text-center mt-2">
+                  {{this.title}}
+               </p>
+            </div>
+             <form class="delete-form"
+                  action="/gallery/{{this.id}}?_method=delete"
+                  method="post">
+                  <button class="btn btn-danger mb-3">Delete</button>
+             </form>
+         </div>
+      </div>
+
+          {{else}}
+          <p>No Galleries available!</p>
+         {{/each}}
+
+</div>
+
+   </div>
+</div>
+{{> footer }}

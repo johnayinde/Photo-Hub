@@ -10,7 +10,7 @@
 
 
   <div class="row">
-    <div  style="width: 40%; margin: 20px auto;">
+    <div  style="width: 40%; margin: 20px auto;" class="col-md-6">
       <form action="/auth/signin" method="post" class="mb-3">
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">Email</label>
@@ -22,12 +22,14 @@
           <input required class="form-control" name="password" placeholder="Password" type="password" />
         </div>
 
-        <button type="submit" class="btn btn-primary  btn-lg">
+      <div class="d-flex flex-column ">
+        <button type="submit" class="mb-2 btn btn-primary btn-lg">
           Login
         </button>
-      </form>
       <a class="" href="/auth/register">Register</a>
-
+      </div>
+      
+      </form>
     </div>
   </div>
 </div>

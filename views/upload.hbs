@@ -13,12 +13,25 @@
           <input type="text" class="form-control" name="title" placeholder="Title" required />
         </div>
 
+
+         <div class="mb-3">
+          <label class="form-label" for="">Category</label>
+          <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="categoryId">
+            <option value="00"  >Select Category</option>
+              {{#each categories}}
+                <option aria-required="true" value="{{this.id}}">{{this.name}}</option>
+             {{/each}}
+            {{!-- <option value="0" >Other</option> --}}
+          </select>
+        </div>
+
+
         <div class="mb-3">
           <label for="formFile" class="form-label">Image</label>
           <input class="form-control" placeholder="image" type="text" name="image" id="formFile" required>
           {{!-- <input class="form-control" type="file" id="formFile"> --}}
         </div>
-        
+
         <button type="submit" class="btn btn-primary btn-block p-2">
           Upload
         </button>

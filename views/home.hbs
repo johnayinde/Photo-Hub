@@ -2,42 +2,98 @@
 {{> header }}
 
 <div class="container">
-   Welcome home
+ 
+
+   <div class="row justify-content-center mt-2 ">
+    <div class="col-lg-6 col-md-6 ">
+        <ul class="list-group flex-column flex-md-row">
+          {{#each categories}}
+              <a class="text-decoration-none" href="/category/{{this.name}}">
+                <li class="list-group-item  d-flex justify-content-between align-items-center list-group-item-primary">
+                  {{this.name}}
+                      <span class="badge bg-primary rounded-pill ms-3">{{this.photos.length}}</span>
+                </li>
+              </a>
+          {{/each}}   
+            
+          {{!-- <li class="list-group-item   flex-column  align-items-center list-group-item-primary">
+                <a class="text-decoration-none" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                  See More..
+                </a>
+                <div class="collapse" id="collapseExample">
+                  <ul class="list-group flex-column flex-md-row">
+                    {{#each moreCat}}
+                        <li class="list-group-item  d-flex justify-content-between align-items-center list-group-item-primary">
+                      {{this.name}}
+                          <span class="badge bg-primary rounded-pill ms-3">{{this.photos.length}}</span>
+                        </li>
+                      {{/each}}  
+                  </ul>
+                </div>
+          </li>    --}}
+        </ul>
 
 
-   <div class="row justify-content-center mt-5">
-  <div class="col-lg-6 ">
-      <div class="input-group mb-3">
-         <input type="text" class="form-control" placeholder="Search name" >
-         <button class="btn btn-outline-secondary" type="button" >Button</button>
-      </div>
-
-
-    <div class="row text-center">
-          {{#each galleries}}
-        <div class="col-sm-6 col-md-3">
-          <div class="card mt-3 camp-card">
-            <img src="{{this.image}}" class="img-thumbnail camp-img" />
-            <div class="caption">
-              <p class="card-text text-center mt-2">
-                {{this.title}}
-              </p>
-            </div>
-          </div>
-        </div>
-         {{else}}
-          <p>No Galleries available!</p>
-         {{/each}}
     </div>
-
-
-
-
-
    </div>
-</div>
+
+
+  {{!-- <div class="row justify-content-center mt-5">
+    <div class="col-lg col-md-6 ">
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Search name" >
+          <button class="btn btn-outline-secondary" type="button" >Button</button>
+        </div>
+    </div>
+  </div> --}}
+
+
+
+
+          {{#if photos}}
+            <div class="row text-center">
+                {{#each photos}}
+              <div class="col-sm-6 col-md-3">
+                <div class="card mt-3 camp-card">
+                  <img src="{{this.image}}" class="img-thumbnail camp-img" />
+                  <div class="caption">
+                    <p class="card-text text-center mt-2">
+                      {{this.title}}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              {{else}}
+                <p>No Galleries available!</p>
+              {{/each}}
+             </div>
+          {{/if}}
+
+
+            {{#if galleries}}
+            <div class="row text-center">
+                {{#each galleries}}
+              <div class="col-sm-6 col-md-3">
+                <div class="card mt-3 camp-card">
+                  <img src="{{this.image}}" class="img-thumbnail camp-img" />
+                  <div class="caption">
+                    <p class="card-text text-center mt-2">
+                      {{this.title}}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              {{else}}
+                <p>No Galleries available!</p>
+              {{/each}}
+             </div>
+          {{/if}}
+
+
+
 
 </div>
+
 
 
 
