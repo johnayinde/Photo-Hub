@@ -15,7 +15,6 @@ export class SignInFilter implements ExceptionFilter {
     const response = ctx.getResponse<Response>();
     const request = ctx.getRequest<Request>();
 
-    console.log({ exception });
 
     const errorArray = exception.getResponse();
 

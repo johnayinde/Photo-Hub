@@ -15,10 +15,7 @@ export class SignUpFilter implements ExceptionFilter {
     const response = ctx.getResponse<Response>();
     const request = ctx.getRequest<Request>();
 
-    console.log({ exception });
-
     const errorArray = exception.getResponse();
-    console.log(typeof errorArray);
 
     if (
       (exception instanceof BadRequestException ||
