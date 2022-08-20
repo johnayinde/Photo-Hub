@@ -35,42 +35,33 @@ export class AuthController {
     return {};
   }
 
+  @Post('/signin')
   @UseFilters(SignInFilter)
   @UseGuards(LocalAuthGuard)
-  @Post('/signin')
   async login(@Req() req, @Res() res) {
-    console.log(req.user);
     res.redirect('/');
   }
 
-  @UseFilters(SignUpFilter)
   @Post('/signup')
+  @UseFilters(SignUpFilter)
   @UsePipes(ValidationPipe)
   async signUp(@Body() body: CreateUserDto, @Req() req, @Res() res) {
     const user = await this.authService.signUp(body);
-    console.log(user);
     req.flash('success', 'User successfully registered');
     res.redirect('/auth/login');
   }
 
+  @Get('logout')
   @UseFilters(SignInFilter)
   @UseGuards(AuthenticatedGuard)
-  @Get('logout')
   async logout(@Req() req, @Res() res) {
     req.session.destroy();
-    console.log(req.user);
     res.redirect('/');
   }
 
-  @UseGuards(AuthenticatedGuard)
   @Get('/me')
+  @UseGuards(AuthenticatedGuard)
   async getme(@Req() req) {
-    return req.user;
-  }
-
-  // @UseGuards(AuthenticatedGuard)
-  @Get('/mee')
-  async getmee(@Req() req) {
     return req.user;
   }
 }

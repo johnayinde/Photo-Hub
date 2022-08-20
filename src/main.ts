@@ -6,15 +6,22 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 import { join } from 'path';
 import * as hbs from 'hbs';
 import * as flash from 'connect-flash';
-import { Request, Response, NextFunction } from 'express';
-import { Req } from '@nestjs/common';
+import * as methodOverride from 'method-override';
+import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
   app.enableCors();
 
+  // app.useGlobalPipes(
+  //   new ValidationPipe({
+  //     transform: true,
+  //   }),
+  // );
+
   app.setViewEngine('hbs');
   app.useStaticAssets(join(__dirname, '../public'));
+  app.useStaticAssets(join(__dirname, '../image'));
   app.setBaseViewsDir(join(__dirname, '../views'));
   hbs.registerPartials(join(__dirname, '../views/partials'), () => {});
 
@@ -28,6 +35,8 @@ async function bootstrap() {
   app.use(passport.initialize());
   app.use(passport.session());
   app.use(flash());
+  app.use(flash());
+  app.use(methodOverride('_method'));
 
   app.use(function (req, res, nest) {
     res.locals.currentUser = req.user;

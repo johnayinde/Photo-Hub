@@ -3,7 +3,6 @@ import {
   UnauthorizedException,
   HttpException,
   HttpStatus,
-  BadRequestException,
 } from '@nestjs/common';
 import { UsersService } from 'src/users/users.service';
 import { AuthHelperService } from '../common/helper/auth-helper.service';
@@ -17,7 +16,7 @@ export class AuthService {
   constructor(
     @InjectRepository(User) private usersRepo: Repository<User>,
     private readonly userService: UsersService,
-    private authHelper: AuthHelperService, // private configService: ConfigService,
+    private authHelper: AuthHelperService, 
   ) {}
 
   async signUp(data: CreateUserDto) {

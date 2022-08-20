@@ -22,17 +22,18 @@ export class CategoriesService {
     return await this.categoryyRepo.find({ relations: ['photos'] });
   }
 
-  async findOne(id: number) {
-    return await this.categoryyRepo.find({ where: { id } });
+  async findOne(name: string) {
+    return await this.categoryyRepo.findOne({
+      where: { name },
+      relations: ['photos'],
+    });
   }
 
-  // async update(id: number, updateCategoryDto: UpdateCategoryDto) {
-  //   return `This action updates a #${id} category`;
-  // }
+  async update(id: number, updateCategoryDto: UpdateCategoryDto) {
+    return `This action updates a #${id} category`;
+  }
 
   async remove(id: number) {
-    const category = await this.findOne(id);
-
     return await this.categoryyRepo.delete(id);
   }
 }
