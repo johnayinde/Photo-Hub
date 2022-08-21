@@ -30,7 +30,7 @@ import { CloudinaryModule } from './cloudinary/cloudinary.module';
         password: configService.get('DB_PASSWORD'),
         database: configService.get('DB_DATABASE'),
         entities: [User, Gallery, Category],
-        synchronize: false,
+        synchronize: true,
         ssl:
           configService.get('ENV') === 'development'
             ? false
