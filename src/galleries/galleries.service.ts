@@ -5,7 +5,7 @@ import { CreateGalleryDto } from './dto/create-gallery.dto';
 import { Gallery } from './entities/gallery.entity';
 import { User } from './../users/entities/User.entity';
 import { Category } from './../categories/entities/category.entity';
-import { relative } from 'path';
+import { CloudinaryService } from './../cloudinary/cloudinary.service';
 
 @Injectable()
 export class GalleriesService {
@@ -14,22 +14,34 @@ export class GalleriesService {
     private readonly galleryRepo: Repository<Gallery>,
     @InjectRepository(Category)
     private readonly categoryRepo: Repository<Category>,
+    private cloudinary: CloudinaryService,
   ) {}
 
-  async create(createGalleryDto: CreateGalleryDto, user: User) {
+  async create(
+    createGalleryDto: CreateGalleryDto,
+    user: User,
+    file: Express.Multer.File,
+  ) {
     try {
       const category = await this.categoryRepo.findOne({
         where: { id: createGalleryDto.categoryId },
       });
 
-      console.log({ category });
-
       if (!category)
         throw new HttpException('Category not found', HttpStatus.BAD_REQUEST);
 
+      const url = await this.cloudinary.uploadImage(file);
+
+      if (!url) {
+        throw new HttpException(
+          'Error Uploading image',
+          HttpStatus.BAD_REQUEST,
+        );
+      }
+
       const photo = this.galleryRepo.create({
         title: createGalleryDto.title,
-        image: createGalleryDto.image,
+        image: url,
         user,
         category,
       });
@@ -40,15 +52,12 @@ export class GalleriesService {
 
       return newPhoto;
     } catch (error) {
-      // console.log('serv', error.message);
-
       throw new HttpException(error.message, error.status);
     }
   }
 
   async findAll() {
     const allGalleries = await this.galleryRepo.find({});
-    console.log(allGalleries.length);
 
     // if () {
     //   throw new HttpException('No Galleries available!', HttpStatus.NOT_FOUND);

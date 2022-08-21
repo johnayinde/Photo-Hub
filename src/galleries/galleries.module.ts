@@ -5,9 +5,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Gallery } from './entities/gallery.entity';
 import { Category } from './../categories/entities/category.entity';
 import { CategoriesService } from './../categories/categories.service';
+import { CloudinaryModule } from './../cloudinary/cloudinary.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Gallery, Category])],
+  imports: [CloudinaryModule, TypeOrmModule.forFeature([Gallery, Category])],
   controllers: [GalleriesController],
   providers: [GalleriesService, CategoriesService],
   exports: [GalleriesService],
