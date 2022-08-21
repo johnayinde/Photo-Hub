@@ -20,13 +20,21 @@ import { CloudinaryModule } from './cloudinary/cloudinary.module';
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
         type: 'postgres',
+        url:
+          configService.get('ENV') === 'development'
+            ? ''
+            : configService.get('DATABASE_URL'),
         host: configService.get('DB_HOST'),
         port: +configService.get<number>('DB_PORT'),
         username: configService.get('DB_USERNAME'),
         password: configService.get('DB_PASSWORD'),
         database: configService.get('DB_DATABASE'),
         entities: [User, Gallery, Category],
-        synchronize: true,
+        synchronize: false,
+        ssl:
+          configService.get('ENV') === 'development'
+            ? false
+            : { rejectUnauthorized: false },
       }),
     }),
     UsersModule,
