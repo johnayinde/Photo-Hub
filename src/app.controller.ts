@@ -29,10 +29,8 @@ export class AppController {
     const categories = await this.categporyService.findAll();
 
     const categoryPhotos = await this.categporyService.findOne(name);
-    console.log({ categoryPhotos });
 
     const photos = categoryPhotos.photos;
-    console.log({ photos });
     return { photos, categories: categories };
   }
 

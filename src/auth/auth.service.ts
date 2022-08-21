@@ -16,14 +16,13 @@ export class AuthService {
   constructor(
     @InjectRepository(User) private usersRepo: Repository<User>,
     private readonly userService: UsersService,
-    private authHelper: AuthHelperService, 
+    private authHelper: AuthHelperService,
   ) {}
 
   async signUp(data: CreateUserDto) {
     const userData = Object.assign(new User(), data);
 
     const userExist = await this.userService.getUserByEmail(data.email);
-    console.log({ userExist });
 
     if (userExist)
       throw new HttpException('User already exist', HttpStatus.BAD_REQUEST);
@@ -42,7 +41,6 @@ export class AuthService {
       password,
       user.password,
     );
-    console.log({ verifyPassword });
 
     if (!verifyPassword) {
       throw new UnauthorizedException('Invalid Password');
@@ -53,7 +51,6 @@ export class AuthService {
 
   async validateUser(email: string, password: string) {
     const user = await this.userService.getUserByEmail(email);
-    console.log({ user });
 
     if (!user)
       throw new HttpException('Invalid Email Address', HttpStatus.BAD_REQUEST);

@@ -59,10 +59,6 @@ export class GalleriesService {
   async findAll() {
     const allGalleries = await this.galleryRepo.find({});
 
-    // if () {
-    //   throw new HttpException('No Galleries available!', HttpStatus.NOT_FOUND);
-    // }
-
     return allGalleries;
   }
 
