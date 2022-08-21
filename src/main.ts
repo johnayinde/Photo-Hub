@@ -13,12 +13,6 @@ async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
   app.enableCors();
 
-  app.useGlobalPipes(
-    new ValidationPipe({
-      transform: true,
-    }),
-  );
-
   app.setViewEngine('hbs');
   app.useStaticAssets(join(__dirname, '../public'));
   app.useStaticAssets(join(__dirname, '../image'));
