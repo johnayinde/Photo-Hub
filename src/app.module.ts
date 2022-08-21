@@ -1,15 +1,16 @@
-import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { User } from './users/entities/User.entity';
-import { BooksModule } from './books/books.module';
-import { Book } from './books/entities/book.entity';
 import { AppController } from './app.controller';
 import { GalleriesModule } from './galleries/galleries.module';
 import { Gallery } from './galleries/entities/gallery.entity';
+import { CategoriesModule } from './categories/categories.module';
+import { Category } from './categories/entities/category.entity';
+import { CloudinaryModule } from './cloudinary/cloudinary.module';
 
 @Module({
   imports: [
@@ -24,21 +25,17 @@ import { Gallery } from './galleries/entities/gallery.entity';
         username: configService.get('DB_USERNAME'),
         password: configService.get('DB_PASSWORD'),
         database: configService.get('DB_DATABASE'),
-        // entities: ['dist/src/**/*.entity.{js,ts}'],
-        entities: [User, Gallery],
+        entities: [User, Gallery, Category],
         synchronize: true,
       }),
     }),
     UsersModule,
     AuthModule,
-    BooksModule,
     GalleriesModule,
+    CategoriesModule,
+    CloudinaryModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {
-  // configure(consumer: MiddlewareConsumer) {
-  //   consumer.apply(LocalMiddleware);
-  // }
-}
+export class AppModule {}
